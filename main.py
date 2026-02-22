@@ -29,3 +29,14 @@ model = keras.Sequential([
     keras.layers.Dense(16, activation="relu", name="decoder2"),
     keras.layers.Dense(30, name="decoder3")
 ])
+
+
+# model compile
+model.compile(
+    optimizer=keras.optimizers.Adam(learning_rate=0.001),  # Adam is better verison of Stochastic gradient descent.It is a standart (Using random data set from current data set to reduce derivative calculation stuff on loss function)
+    loss=keras.losses.MeanSquaredError(), # we need usefull loss compute method for reconstructed number set
+    metrics=[
+        keras.metrics.MeanAbsoluteError() # we use metrics to calculate "real world error rate"
+    ],
+)
+
