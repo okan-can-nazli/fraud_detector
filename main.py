@@ -29,4 +29,3 @@ model = keras.Sequential([
     keras.layers.Dense(16, activation="relu", name="decoder2"),
     keras.layers.Dense(30, name="decoder3")
 ])
-print("testing")
