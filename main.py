@@ -19,7 +19,7 @@ scaler = StandardScaler() # u have to create a new scaler to use on diffrent set
 clean_data_scaled = scaler.fit_transform(clean_data)  
 fraud_data_scaled = scaler.transform(fraud_data)  
 
-
+# model layer sequence
 model = keras.Sequential([
     keras.layers.Input(shape=(30,)),
     keras.layers.Dense(16, activation="relu", name="encoder1"),
