@@ -33,10 +33,37 @@ model = keras.Sequential([
 
 # model compile
 model.compile(
-    optimizer=keras.optimizers.Adam(learning_rate=0.001),  # Adam is better verison of Stochastic gradient descent.It is a standart (Using random data set from current data set to reduce derivative calculation stuff on loss function)
+    optimizer=keras.optimizers.Adam(learning_rate=0.001),  # Adam is better verison (contains:momentum etc.) of Stochastic gradient descent.It is a standart (Using random data set from current data set to reduce derivative calculation stuff on loss function)
     loss=keras.losses.MeanSquaredError(), # we need usefull loss compute method for reconstructed number set
     metrics=[
         keras.metrics.MeanAbsoluteError() # we use metrics to calculate "real world error rate"
-    ],
+    ]
 )
+
+# model training
+model.fit(
+    x=clean_data_scaled,
+    y=clean_data_scaled,
+    batch_size=512, # non overlapping input window size
+    epochs=100,
+    verbose="auto",
+    callbacks=None, # during training operations
+    
+    #use one of them for 
+    validation_split=0.2, # do not use %20 of data on training instead of use them as validators (steal)
+    validation_data=None, # enter a SEPERATED VALİDATİON DATA SET (no steal)
+    
+    #defaults 
+    shuffle=True,
+    class_weight=None,
+    sample_weight=None,
+    initial_epoch=0,
+    steps_per_epoch=None,
+    validation_steps=None,
+    validation_batch_size=None,
+    validation_freq=1,
+)
+
+
+
 
