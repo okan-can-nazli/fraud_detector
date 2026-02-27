@@ -91,5 +91,5 @@ total_frauds = len(fraud_errors)
 print(f"Caught {frauds_caught}/{total_frauds} frauds")
 
 
-
+model.save('fraud_detector.h5') # save model for later usage 
 
