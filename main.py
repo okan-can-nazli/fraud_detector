@@ -1,5 +1,7 @@
 import pandas as pd
-from sklearn.preprocessing import StandardScaler
+import numpy as np
+from sklearn.preprocessing import StandardScaler 
+from sklearn.metrics import mean_squared_error
 
 import keras
 
@@ -63,6 +65,30 @@ model.fit(
     validation_batch_size=None,
     validation_freq=1,
 )
+
+
+# TESTİNG
+
+clean_reconstructed = model.predict(clean_data_scaled)
+fraud_reconstructed = model.predict(fraud_data_scaled)
+
+
+clean_errors = np.mean((clean_data_scaled - clean_reconstructed)**2, axis=1)
+fraud_errors = np.mean((fraud_data_scaled - fraud_reconstructed)**2, axis=1)
+
+print(f"Clean error mean: {clean_errors.mean():.4f}")
+print(f"Fraud error mean: {fraud_errors.mean():.4f}")
+print(f"Clean error max: {clean_errors.max():.4f}")
+print(f"Fraud error min: {fraud_errors.min():.4f}")
+
+
+threshold = 5  
+
+# count fraud catches
+frauds_caught = (fraud_errors > threshold).sum()
+total_frauds = len(fraud_errors)
+
+print(f"Caught {frauds_caught}/{total_frauds} frauds")
 
 
 
