@@ -1,21 +1,13 @@
-# Gold Price Predictor (PyTorch) 📈
+# Credit Card Fraud Detector 🕵️‍♂️
 
-A time-series forecasting model built with PyTorch to predict future gold prices. This project automates the retrieval of real-world financial data, processes it using a sliding window approach, and utilizes a Long Short-Term Memory (LSTM) neural network to forecast future values based on historical trends.
-
-## Features
-* **Automated Data Pipeline:** Fetches up-to-date real historical gold data directly from Yahoo Finance.
-* **Custom PyTorch Architecture:** Implements a custom `nn.Module` with an LSTM layer and a linear output layer for sequence prediction.
-* **Sliding Window Processing:** Dynamically breaks down continuous time-series data into sliding sequences to effectively train the model on past trends.
-* **Interactive Forecasting:** Includes a CLI tool that allows users to input any future date and calculates the predicted gold price step-by-step up to that specific day.
+An anomaly detection model built with Keras and TensorFlow to identify fraudulent credit card transactions. This project utilizes an Autoencoder neural network architecture to learn the patterns of normal transactions and flags anomalies based on reconstruction errors.
 
 ## Technologies Used
-* **Deep Learning:** Python, PyTorch (`nn.LSTM`, `optim.Adam`, `MSELoss`)
-* **Data Processing & Scaling:** Scikit-Learn (`MinMaxScaler`), NumPy, Pandas
-* **Data Extraction:** `yfinance`
+* **Deep Learning:** TensorFlow / Keras (Sequential API)
+* **Data Processing & Scaling:** Pandas, NumPy, Scikit-Learn (`StandardScaler`)
+* **Architecture:** Autoencoder (Encoder-Decoder Neural Network)
 
-## How to Run
-
-1. Make sure you have the required libraries installed (`torch`, `yfinance`, `scikit-learn`, `numpy`, `pandas`).
-2. Run the main script to fetch the latest data, train the model, and start the prediction interface:
-   ```bash
-   python main.py
+## Highlights
+* Custom thresholding for anomaly detection using Mean Squared Error (MSE).
+* Model trained exclusively on non-fraudulent data to establish a baseline for normal behavior, isolating anomalies during the reconstruction phase.
+* Includes validation splitting and comprehensive performance metrics like Mean Absolute Error (MAE).
