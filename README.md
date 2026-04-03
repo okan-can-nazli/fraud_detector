@@ -1,22 +1,19 @@
-# Credit Card Fraud Detector 
+# Credit Card Fraud Anomaly Detector
 
-An anomaly detection model built with Keras and TensorFlow to identify fraudulent credit card transactions. This project utilizes an Autoencoder neural network architecture to learn the patterns of normal transactions and flags anomalies based on reconstruction errors.
+## Project Overview
+An unsupervised anomaly detection system built with Keras and TensorFlow. This project identifies fraudulent credit card transactions by learning the baseline behavior of normal transactions and flagging statistical deviations.
 
-## Technologies Used
-* **Deep Learning:** TensorFlow / Keras (Sequential API)
-* **Data Processing & Scaling:** Pandas, NumPy, Scikit-Learn (`StandardScaler`)
-* **Architecture:** Autoencoder (Encoder-Decoder Neural Network)
+Instead of traditional binary classification, this model uses a Deep Autoencoder architecture. By training exclusively on valid transactions, the network learns to compress and reconstruct normal behavior. Fraudulent transactions fail to reconstruct correctly, resulting in a high Mean Squared Error (MSE) which acts as the trigger for anomaly detection.
 
-## Highlights
-* Custom thresholding for anomaly detection using Mean Squared Error (MSE).
-* Model trained exclusively on non-fraudulent data to establish a baseline for normal behavior, isolating anomalies during the reconstruction phase.
-* Includes validation splitting and comprehensive performance metrics like Mean Absolute Error (MAE).
+## Tech Stack
+* **Deep Learning:** TensorFlow / Keras
+* **Data Processing:** Pandas, NumPy, Scikit-Learn (`StandardScaler`)
+* **Architecture:** 7-Layer Deep Autoencoder (30 → 16 → 8 → 3 → 8 → 16 → 30)
 
-## ⚠️ Important Note on the Dataset
-The `creditcard.csv` dataset used for training this model is not included in this repository due to GitHub's file size limitations. 
+## Key Features
+* **Latent Space Compression:** Forces 30-dimensional transaction data through a 3-dimensional bottleneck to capture core behavioral patterns.
+* **Semi-Supervised Approach:** Trained strictly on non-fraudulent data with a 20% validation split to prevent data leakage and overfitting.
+* **Custom Thresholding:** Evaluates reconstruction errors mathematically to flag fraud while minimizing false positives.
 
-**To run this project locally:**
-1. Download the dataset from Kaggle (search for "Credit Card Fraud Detection").
-2. Extract the `creditcard.csv` file.
-3. Place it directly in the root directory of this project alongside the Python script.
-4. Run the code.
+## Note on Dataset
+The model is designed around the standard `creditcard.csv` dataset (~284,000 transactions). Due to GitHub size constraints, the CSV is not included. To run locally, place the Kaggle dataset in the root directory before execution.
