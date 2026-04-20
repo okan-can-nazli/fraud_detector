@@ -3,12 +3,12 @@
 ## Project Overview
 An unsupervised anomaly detection system built with Keras and TensorFlow. This project identifies fraudulent credit card transactions by learning the baseline behavior of normal transactions and flagging statistical deviations.
 
-Instead of traditional binary classification, this model uses a Deep Autoencoder architecture. By training exclusively on valid transactions, the network learns to compress and reconstruct normal behavior. Fraudulent transactions fail to reconstruct correctly, resulting in a high Mean Squared Error (MSE) which acts as the trigger for anomaly detection.
+Instead of traditional binary ee, this model uses an Autoencoder architecture. By training exclusively on valid transactions, the network learns to compress and reconstruct normal behavior. Fraudulent transactions fail to reconstruct correctly, resulting in a high Mean Squared Error (MSE) which acts as the trigger for anomaly detection.
 
 ## Tech Stack
 * **Deep Learning:** TensorFlow / Keras
 * **Data Processing:** Pandas, NumPy, Scikit-Learn (`StandardScaler`)
-* **Architecture:** 7-Layer Deep Autoencoder (30 → 16 → 8 → 3 → 8 → 16 → 30)
+* **Architecture:** 7-Layer Autoencoder (30 → 16 → 8 → 3 → 8 → 16 → 30)
 
 ## Key Features
 * **Latent Space Compression:** Forces 30-dimensional transaction data through a 3-dimensional bottleneck to capture core behavioral patterns.
